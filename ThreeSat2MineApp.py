@@ -15,9 +15,12 @@ T2M.setClauses()
 for i in range(int(cla_num)):
     
     print('please input clause',i+1)
+    
+    #節に含まれる変数の情報を入力する
     var_list=[] 
     v1,v2,v3=(int(x) for x in input().split())
     
+    #入力された整数(変数)が正の数ならその変数を真とし,負なら偽とする
     if(v1>=0):
         var_list.append([v1,True])
     else:
