@@ -6,6 +6,12 @@ from src.ThreeSat2Mine import ThreeSat2Mine
 var_num=input("Input the number of variables : ") # 変数の数(種類)を入力
 cla_num=input("Input the number of clauses : ") # 節の数を入力
 
+if(int(var_num)<=0 or int(cla_num)<=0): #変数,節の数は最小1
+    print('----------------------------------\n')
+    print("please input at least 1 for variables and clauses")
+    print('\n----------------------------------\n')
+    sys.exit()
+
 cla_list=[] #最終的な式の出力用
 
 #ブロック設置用インスタンス生成&メソッド実行
