@@ -52,6 +52,7 @@ class ThreeSat2Mine():
     #先端のガジェットのx座標
     current_x=0
     
+    
     #ガジェット構造体格納用リスト
     var_list=[]
     cla_list=[]
@@ -73,6 +74,8 @@ class ThreeSat2Mine():
         
     #デストラクタ
     def __del__(self):
+        
+        #デストラクタが宣言されない場合,変更が保存されないので注意
         self.level.save()
         self.level.close()
         
@@ -148,7 +151,6 @@ class ThreeSat2Mine():
                     
                     #基本の壁と床の設置
                     if(j==0 or j==6 or j==12): #x軸方向の壁設置
-                        
                         if( (j==0 or j==12) and (k==2 or k==6) ): #x軸0,13マス目は節ガジェット入り口および出口とする
                             self.level.set_version_block(self.cla_list[i].origin_x+j,0,k,"minecraft:overworld",self.game_version,self.plank)
                             
@@ -162,9 +164,7 @@ class ThreeSat2Mine():
                                 self.level.set_version_block(self.cla_list[i].origin_x+j,l,k,"minecraft:overworld",self.game_version,self.plank)
                                 
                     elif(k==0 or k==8): #z軸方向の壁設置
-                        
                         if(j==9):#レッドストーン回路用の穴を作る
-                            
                             if(k==0):
                                 self.level.set_version_block(self.cla_list[i].origin_x+j,0,k,"minecraft:overworld",self.game_version,self.plank)
                                 self.level.set_version_block(self.cla_list[i].origin_x+j,1,k,"minecraft:overworld",self.game_version,self.rep_mz)
@@ -183,13 +183,11 @@ class ThreeSat2Mine():
                         self.level.set_version_block(self.cla_list[i].origin_x+j,0,k,"minecraft:overworld",self.game_version,self.plank)
                         
                     #レッドストーン回路部設置
-                    if(k==0): #true側の入力
-                        
+                    if(k==0): #true側の入力      
                         if(j==0):
                             pass
                     
-                        elif(j==7 or j==11):
-                        
+                        elif(j==7 or j==11):   
                             for l in range(3):
                                 self.level.set_version_block(self.cla_list[i].origin_x+j,0,-l-2,"minecraft:overworld",self.game_version,self.plank)
                                 self.level.set_version_block(self.cla_list[i].origin_x+j,1,-l-2,"minecraft:overworld",self.game_version,self.red_z)
@@ -199,15 +197,12 @@ class ThreeSat2Mine():
                             self.level.set_version_block(self.cla_list[i].origin_x+j,1,-2,"minecraft:overworld",self.game_version,self.red_z)
                         
                         elif(j==9):
-                        
                             for l in range(-1,-5,-1):
                                 self.level.set_version_block(self.cla_list[i].origin_x+j,0,l,"minecraft:overworld",self.game_version,self.plank)
                                 self.level.set_version_block(self.cla_list[i].origin_x+j,1,l,"minecraft:overworld",self.game_version,self.red_z)
                             
-                    if(k==8): #false側の入力
-                        
+                    if(k==8): #false側の入力   
                         if(j==7 or j==11):
-                        
                             for l in range(3):
                                 self.level.set_version_block(self.cla_list[i].origin_x+j,0,k+l+2,"minecraft:overworld",self.game_version,self.plank)
                                 self.level.set_version_block(self.cla_list[i].origin_x+j,1,k+l+2,"minecraft:overworld",self.game_version,self.red_z)
@@ -233,7 +228,7 @@ class ThreeSat2Mine():
     def setLogic(self,num,v1,v2,v3):
         
         if(v1[1]==True):
-            self.cla_list[num].true.append(v1[0])
+            self.cla_list[num].true.append(v1[0])   
         else: 
             self.cla_list[num].false.append(v1[0])
             
@@ -296,13 +291,12 @@ class ThreeSat2Mine():
          
                     
                     else: #通常
-                        
-                        if(j!=0 and (j-21)%8==0):
+                        if(j!=0 and (j-21)%8==0): #リピーター
                             self.level.set_version_block(self.var_list[i].origin_x+11,0,j,"minecraft:overworld",self.game_version,self.plank)
                             self.level.set_version_block(self.var_list[i].origin_x+11,1,j,"minecraft:overworld",self.game_version,self.rep_pz)
                             j+=1
                             
-                        else:
+                        else: #通常
                             self.level.set_version_block(self.var_list[i].origin_x+11,0,j,"minecraft:overworld",self.game_version,self.plank)
                             self.level.set_version_block(self.var_list[i].origin_x+11,1,j,"minecraft:overworld",self.game_version,self.red_z)
                             j+=1
@@ -333,7 +327,7 @@ class ThreeSat2Mine():
                             cross_flag=True
                             break
                         
-                    if(cross_flag and j-1!=self.var_list[i].true_z): #交差
+                    if(cross_flag and j-1!=self.var_list[i].true_z): #交差    
                         self.level.set_version_block(self.var_list[i].origin_x+11,1,j,"minecraft:overworld",self.game_version,self.plank)
                         self.level.set_version_block(self.var_list[i].origin_x+11,2,j,"minecraft:overworld",self.game_version,self.red_z)
                         
@@ -344,8 +338,7 @@ class ThreeSat2Mine():
                         self.level.set_version_block(self.var_list[i].origin_x+11,2,j-2,"minecraft:overworld",self.game_version,self.red_z)   
                         j-=3
                         
-                    else: #通常
-                        
+                    else: #通常          
                         if((j+4)%8==0):
                             self.level.set_version_block(self.var_list[i].origin_x+11,0,j,"minecraft:overworld",self.game_version,self.plank)
                             self.level.set_version_block(self.var_list[i].origin_x+11,1,j,"minecraft:overworld",self.game_version,self.rep_mz)
@@ -377,8 +370,7 @@ class ThreeSat2Mine():
             used_num=0 #その節ガジェットに通した変数ガジェットの銅線の数(最大3)
             
             #false側
-            
-            if not self.cla_list[i].false:
+            if not self.cla_list[i].false: #false変数がない場合,スルー
                 pass
             
             else:
@@ -409,12 +401,13 @@ class ThreeSat2Mine():
                             k+=3
                             
                         else: #通常
-                            if(k!=0 and (k-21)%8==0):
+                            
+                            if(k!=0 and (k-21)%8==0): #リピーター    
                                 self.level.set_version_block(self.cla_list[i].false_x[used_num],0,k,"minecraft:overworld",self.game_version,self.plank)
                                 self.level.set_version_block(self.cla_list[i].false_x[used_num],1,k,"minecraft:overworld",self.game_version,self.rep_mz)
                                 k+=1
                                 
-                            else:
+                            else: #通常
                                 self.level.set_version_block(self.cla_list[i].false_x[used_num],0,k,"minecraft:overworld",self.game_version,self.plank)
                                 self.level.set_version_block(self.cla_list[i].false_x[used_num],1,k,"minecraft:overworld",self.game_version,self.red_z)
                                 k+=1
@@ -422,7 +415,7 @@ class ThreeSat2Mine():
                     used_num+=1
                     
             #true側
-            if not self.cla_list[i].true:
+            if not self.cla_list[i].true: #true変数がない場合,スルー
                 pass
             
             else:
@@ -435,8 +428,8 @@ class ThreeSat2Mine():
                         cross_flag=False
                         
                         for l in self.var_list: #交差するかの判定
-                        
-                            if(k-1==l.true_z): 
+                             
+                            if(k-1==l.true_z):   
                                 cross_flag=True
                                 break
                             
@@ -452,13 +445,12 @@ class ThreeSat2Mine():
                             k-=3
                         
                         else: #通常
-                            if(k!=0 and (k+4)%8==0):
+                            if(k!=0 and (k+4)%8==0): #リピーター
                                 self.level.set_version_block(self.cla_list[i].false_x[used_num],0,k,"minecraft:overworld",self.game_version,self.plank)
                                 self.level.set_version_block(self.cla_list[i].false_x[used_num],1,k,"minecraft:overworld",self.game_version,self.rep_pz)
                                 k-=1
     
-                                
-                            else:
+                            else: #通常  
                                 self.level.set_version_block(self.cla_list[i].false_x[used_num],0,k,"minecraft:overworld",self.game_version,self.plank)
                                 self.level.set_version_block(self.cla_list[i].false_x[used_num],1,k,"minecraft:overworld",self.game_version,self.red_z)
                                 k-=1
