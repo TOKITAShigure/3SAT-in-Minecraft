@@ -9,7 +9,7 @@ amulet-core 0.10.42
 
 # Usage
 
-please run <span style="color: red; ">ThreeSat2MineApp.py</span> file 
+please run ThreeSat2MineApp.py file 
 
 please input the number of variables and clauses
 
