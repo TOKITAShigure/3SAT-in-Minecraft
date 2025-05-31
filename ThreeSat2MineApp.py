@@ -5,13 +5,16 @@ from src.ThreeSat2Mine import ThreeSat2Mine
 var_num=input("Input the number of variables : ") # 変数の数(種類)を入力
 cla_num=input("Input the number of clauses : ") # 節の数を入力
 
-T2M=ThreeSat2Mine(var_num,cla_num);
+cla_list=[] #最終的な式の出力用
+
+#ブロック設置用インスタンス生成
+T2M=ThreeSat2Mine(var_num,cla_num) 
 T2M.setVariables()
 T2M.setClauses()
 
 for i in range(int(cla_num)):
     
-    print('please input clause ',i+1,': ')
+    print('please input clause',i+1)
     var_list=[] 
     v1,v2,v3=(int(x) for x in input().split())
     
@@ -31,6 +34,40 @@ for i in range(int(cla_num)):
         var_list.append([v3,False])            
     
     T2M.setLogic(i,var_list[0],var_list[1],var_list[2])  
+    
+    cla_list.append([v1,v2,v3])
 
 T2M.setRedStone()
 del T2M
+
+#最終的な式の出力(確認用)
+
+print('----------------------------------\n')
+
+for i in range(int(cla_num)):
+    
+    print('(',end='')
+    
+    for j in range(3):
+        
+        if(j!=2):
+            if cla_list[i][j]<=0:
+                print('¬x{0}'.format(-cla_list[i][j]),'∨',end=' ')
+            
+            else:
+                print('x{0}'.format(cla_list[i][j]),'∨',end=' ')
+                
+        else:
+            if cla_list[i][j]<=0:
+                print('¬x{0}'.format(-cla_list[i][j]),end='')
+            
+            else:
+                print('x{0}'.format(cla_list[i][j]),end='')
+            
+    if i!=int(cla_num)-1:
+        print(')','∧',end=' ')
+        
+    else:
+        print(')',end=' ')
+        
+print('\n\n----------------------------------\n')
