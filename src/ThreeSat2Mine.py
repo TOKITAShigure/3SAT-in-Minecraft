@@ -1,5 +1,6 @@
 #3sat問題をMinecraftに移植するコード
 #コンストラクタによってインスタンスを生成した後は,必ず setVariables -> setClauses -> setLogic -> setRedStone -> デストラクタ の順に実行してください
+#不正な入力の場合は,デストラクタを起動してプログラムを終了してください
 #設計部分において,プレイヤーの移動できるマスについては床,できないマスについては壁と呼称します
 
 
@@ -31,7 +32,7 @@ class Cla_Gad():
     
 class ThreeSat2Mine():
     #バージョンと使用するワールドの宣言
-    game_version=("java",(1,21,5)); #MineCraft Java Edition ver.1.21.5
+    game_version=("java",(1,21,5)); #Minecraft Java Edition ver 1.21.5
     
     
     #使用するブロックを宣言
@@ -74,7 +75,6 @@ class ThreeSat2Mine():
         
     #デストラクタ
     def __del__(self):
-        
         #デストラクタが宣言されない場合,変更が保存されないので注意
         self.level.save()
         self.level.close()
@@ -82,7 +82,6 @@ class ThreeSat2Mine():
         
     #変数ガジェット生成メソッド
     def setVariables(self):
-        
         for i in range(int(self.var_num)):
             
             self.var_list.append(Var_Gad(origin_x=i*13,true_z=(i+1)*-8,false_z=(i+1)*8+9))
@@ -139,7 +138,6 @@ class ThreeSat2Mine():
                     
     #節ガジェット生成メソッド   
     def setClauses(self):
-        
         for i in range(int(self.cla_num)):
             
             self.cla_list.append(Cla_Gad(origin_x=self.current_x,true_x=[self.current_x+7,self.current_x+9,self.current_x+11],false_x=[self.current_x+7,self.current_x+9,self.current_x+11],true=[],false=[]))
@@ -225,8 +223,7 @@ class ThreeSat2Mine():
       
                         
     #節の設定メソッド
-    def setLogic(self,num,v1,v2,v3):
-        
+    def setLogic(self,num,v1,v2,v3):      
         if(v1[1]==True):
             self.cla_list[num].true.append(v1[0])   
         else: 
@@ -245,7 +242,6 @@ class ThreeSat2Mine():
             
     #レッドストーン(制御)部分生成メソッド
     def setRedStone(self):
-        
         #変数ガジェットから最後の節ガジェットまでレッドストーンダストを伸ばす
         for i in range(int(self.var_num)):
             

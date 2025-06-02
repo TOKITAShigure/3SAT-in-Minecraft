@@ -8,7 +8,7 @@ cla_num=input("Input the number of clauses : ") # 節の数を入力
 
 if(int(var_num)<=0 or int(cla_num)<=0): #変数,節の数は最小1
     print('----------------------------------\n')
-    print("please input at least 1 for variables and clauses")
+    print("please input at least 1 variable and clause")
     print('\n----------------------------------\n')
     sys.exit()
 
@@ -43,7 +43,7 @@ for i in range(int(cla_num)):
     else:
         del T2M
         print('----------------------------------\n')
-        print("please input in range of variable")
+        print("please input within range of variable")
         print('\n----------------------------------\n')
         sys.exit()
         
@@ -54,7 +54,7 @@ for i in range(int(cla_num)):
     else:
         del T2M
         print('----------------------------------\n')
-        print("please input in range of variable")
+        print("please input within range of variable")
         print('\n----------------------------------\n')
         sys.exit()
         
@@ -65,7 +65,7 @@ for i in range(int(cla_num)):
     else:
         del T2M
         print('----------------------------------\n')
-        print("please input in range of variable")
+        print("please input within range of variable")
         print('\n----------------------------------\n')
         sys.exit()           
     
