@@ -45,32 +45,33 @@ class ThreeSat2Mine():
     red_blo=Block("minecraft","redstone_block")
     rep_pz=Block("minecraft","repeater",{"facing":StringTag("south")})
     rep_mz=Block("minecraft","repeater",{"facing":StringTag("north")})
-    rep_x=Block("minecraft","repeater",{"facing":StringTag("east")})
+    rep_x=Block("minecraft","repeater",{"facing":StringTag("west")})
     piston_mz=Block("minecraft","piston",{"facing":StringTag("north")})
     piston_pz=Block("minecraft","piston",{"facing":StringTag("south")})
-    
-    
-    #先端のガジェットのx座標
-    current_x=0
-    
-    
-    #ガジェット構造体格納用リスト
-    var_list=[]
-    cla_list=[]
     
     
     #コンストラクタ
     def __init__(self,var_num,cla_num):
         self.var_num=var_num
         self.cla_num=cla_num
+        
+        #先端のガジェットのx座標
+        self.current_x=0
+        
+        #ガジェット構造体格納用リスト
+        self.var_list=[]
+        self.cla_list=[]
                 
         #ディレクトリ内に 'OutputWorld' フォルダを生成する
-        if 'OutputWorld' in [d for d in os.listdir('./')]:
-            shutil.rmtree('./OutputWorld') #すでに出力フォルダがある場合は削除
+        if 'OutputWorld' in [d for d in os.listdir('src/resource/')]:
+            shutil.rmtree('src/resource/OutputWorld') #すでに出力フォルダがある場合は削除
+            
+        if 'OutputWorld.zip' in [d for d in os.listdir('src/resource/')]:
+            os.remove('src/resource/OutputWorld.zip') #すでに出力フォルダがある場合は削除
             
         #ディレクトリ内の 'InputWorld' を変更するワールドのフォルダとする
-        shutil.copytree('./InputWorld','./OutputWorld') 
-        self.level=amulet.load_level("OutputWorld") 
+        shutil.copytree('src/InputWorld','src/resource/OutputWorld') 
+        self.level=amulet.load_level("src/resource/OutputWorld") 
         
         
     #デストラクタ
@@ -78,6 +79,7 @@ class ThreeSat2Mine():
         #デストラクタが宣言されない場合,変更が保存されないので注意
         self.level.save()
         self.level.close()
+        shutil.make_archive('src/resource/OutputWorld', 'zip','src/resource/OutputWorld')
         
         
     #変数ガジェット生成メソッド
@@ -289,7 +291,7 @@ class ThreeSat2Mine():
                     else: #通常
                         if(j!=0 and (j-21)%8==0): #リピーター
                             self.level.set_version_block(self.var_list[i].origin_x+11,0,j,"minecraft:overworld",self.game_version,self.plank)
-                            self.level.set_version_block(self.var_list[i].origin_x+11,1,j,"minecraft:overworld",self.game_version,self.rep_pz)
+                            self.level.set_version_block(self.var_list[i].origin_x+11,1,j,"minecraft:overworld",self.game_version,self.rep_mz)
                             j+=1
                             
                         else: #通常
@@ -337,7 +339,7 @@ class ThreeSat2Mine():
                     else: #通常          
                         if((j+4)%8==0):
                             self.level.set_version_block(self.var_list[i].origin_x+11,0,j,"minecraft:overworld",self.game_version,self.plank)
-                            self.level.set_version_block(self.var_list[i].origin_x+11,1,j,"minecraft:overworld",self.game_version,self.rep_mz)
+                            self.level.set_version_block(self.var_list[i].origin_x+11,1,j,"minecraft:overworld",self.game_version,self.rep_pz)
                             j-=1
                             
                         else:
@@ -400,7 +402,7 @@ class ThreeSat2Mine():
                             
                             if(k!=0 and (k-21)%8==0): #リピーター    
                                 self.level.set_version_block(self.cla_list[i].false_x[used_num],0,k,"minecraft:overworld",self.game_version,self.plank)
-                                self.level.set_version_block(self.cla_list[i].false_x[used_num],1,k,"minecraft:overworld",self.game_version,self.rep_mz)
+                                self.level.set_version_block(self.cla_list[i].false_x[used_num],1,k,"minecraft:overworld",self.game_version,self.rep_pz)
                                 k+=1
                                 
                             else: #通常
@@ -443,7 +445,7 @@ class ThreeSat2Mine():
                         else: #通常
                             if(k!=0 and (k+4)%8==0): #リピーター
                                 self.level.set_version_block(self.cla_list[i].false_x[used_num],0,k,"minecraft:overworld",self.game_version,self.plank)
-                                self.level.set_version_block(self.cla_list[i].false_x[used_num],1,k,"minecraft:overworld",self.game_version,self.rep_pz)
+                                self.level.set_version_block(self.cla_list[i].false_x[used_num],1,k,"minecraft:overworld",self.game_version,self.rep_mz)
                                 k-=1
     
                             else: #通常  

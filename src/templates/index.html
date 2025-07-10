@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja" style="background-image:url(resource/glass.png);background-repeat:no-repeat;background-size:cover">
+
+    <head>
+        <meta charset="UTF-8">
+
+        <title>3SAT in Minecraft</title>
+
+        <style>
+            #wrapper {
+                height:200px;
+                overflow-y: scroll;
+            }
+
+            #contents {
+                background: rgba(118, 118, 110, 0.8);
+            }
+
+            #container{
+                position:relative;
+                width:100%;
+                height:65px;
+            }
+        </style>
+ 
+    </head>
+
+ 
+    <body>
+
+        <h1 style="text-align:center">3SAT in Minecraft</h1>
+
+        <!-- 変数の数と節の数の入力 -->
+        <div id="contents">
+
+            <div id="container">
+                <h2 style="position:absolute;left:33%;display:inline">Variable num</h2> 
+                <h2 style="position:absolute;right:33%;display:inline">Clause num</h2>
+            </div>
+
+
+        <form action="/" method="POST">
+            {%if var_num<=0 or cla_num<=0%}
+                <div id="container">
+                    <input type="text" style="height:20px;position:absolute;left:32.5%;" name="var_num"><input type="text" style="height:20px;position:absolute;right:32%;" name="cla_num">
+                </div>     
+                
+                <div style="text-align:center;"><button type="submit" style="height:50px;width:80px"><h2>Run</h2></button></div>
+
+            {%else%}
+                <div id="container">
+                    <input type="text" style="height:20px;position:absolute;left:32.5%;" name="var_num" value="{{var_num}}"><input type="text" style="height:20px;position:absolute;right:32%;" name="cla_num" value="{{cla_num}}">
+                </div> 
+                <div style="text-align:center;"><button type="submit" style="height:50px;width:80px"><h2>Run</h2></button></div>
+
+            {%endif%}
+        </form>
+
+        </div>
+
+        <p></p>
+
+        <!-- 節の入力 -->
+
+        <div id="wrapper">
+
+            <div id="contents">
+
+            {%if var_num<=0 or cla_num<=0%}
+                <div style="text-align:center"><h2>No input</h2></div>
+
+            {%else%}
+            
+                <form action="/" method="POST">
+                {%for i in range(1,cla_num+1)%}
+                    <div style="text-align:center">
+                        <span>clause {{i}} : </span>
+                        <input type="text" name="clause{{i}}_1" size="5"></input>
+                        <input type="text" name="clause{{i}}_2" size="5"></input>
+                        <input type="text" name="clause{{i}}_3" size="5"></input>
+                    </div>
+                    <p></p>
+                {%endfor%}
+                <div style="text-align:center"><button type="submit" style="height:50px;width:80px"><h2>Run</h2></button></div>
+                </form>
+                
+
+            {%endif%}
+
+            </div>
+
+        </div>
+
+        <p></p>
+
+        <!-- 最終的な結果-->
+
+        <div id="wrapper">
+
+            <div id="contents">
+                {%if result==''%}
+                    <h2 style="text-align:center">No result</h2>
+                    
+
+                {%else%}
+                    <h2 style="text-align:center">{{result}}</h2>
+                    <a href="/resource/OutputWorld.zip" style="text-align:center" download><h2>Download</h2></a>
+                    <form>
+                    <div style="text-align:center"><button type="submit" style="height:50px;width:80px"><h2>Reset</h2></button></div>
+                    </form>
+        
+                {%endif%}
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
+
