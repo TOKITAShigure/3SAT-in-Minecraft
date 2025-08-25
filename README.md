@@ -1,13 +1,9 @@
 # Version
 
-python 3.9.0 
-
-amulet-core 1.9.29
-
-Flask 3.1.1
-
-Minecraft Java edition 1.21.5
-
+![Static Badge](https://img.shields.io/badge/Python-3.9.0-blue?style=flat&logo=python)
+![Static Badge](https://img.shields.io/badge/amulet--core-1.9.29-yellow?style=flat)
+![Static Badge](https://img.shields.io/badge/Flask-3.1.1-%233BABC3?style=flat&logo=flask)
+![Static Badge](https://img.shields.io/badge/Minecraft_java-1.21.5-green?style=flat)
 
 # Usage
 
