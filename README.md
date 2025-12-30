@@ -5,7 +5,9 @@
 ![Static Badge](https://img.shields.io/badge/Flask-3.1.1-%233BABC3?style=flat&logo=flask)
 ![Static Badge](https://img.shields.io/badge/Minecraft_java-1.21.6-green?style=flat)
 
-# Usage
+# Overview and Usage
+
+This code is to place the arbitrary variable gadgets and clause gadgets on https://www.youtube.com/watch?v=uXWOvek4zhs at the point 0,0,0 in the world.
 
 First, run "run.py" file, and open IP displayed on the screen(usually localhost if you do not set any up).
 
