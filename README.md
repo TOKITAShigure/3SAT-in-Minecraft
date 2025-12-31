@@ -1,11 +1,13 @@
-# Requirement
+# 3SAT in Minecraft
+
+## Requirement
 
 ![Static Badge](https://img.shields.io/badge/Python-3.9.0-blue?style=flat&logo=python)
 ![Static Badge](https://img.shields.io/badge/amulet--core-1.9.29-yellow?style=flat)
 ![Static Badge](https://img.shields.io/badge/Flask-3.1.1-%233BABC3?style=flat&logo=flask)
 ![Static Badge](https://img.shields.io/badge/Minecraft_java-1.21.6-green?style=flat)
 
-# Overview and Usage
+## Overview and Usage
 
 This code is to place the arbitrary variable gadgets and clause gadgets on https://www.youtube.com/watch?v=uXWOvek4zhs at the point 0,0,0 in the world.
 
