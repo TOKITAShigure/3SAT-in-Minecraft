@@ -14,7 +14,6 @@ This code is to place the arbitrary variable gadgets and clause gadgets on https
 First, run "run.py" file, and open IP displayed on the screen(usually localhost if you do not set any up).
 
 ```
-
 python run.py
 
 INFO - PyMCTranslate Version 344
@@ -27,7 +26,6 @@ INFO -  * Restarting with stat
 INFO - PyMCTranslate Version 344
 WARNING -  * Debugger is active!
 INFO -  * Debugger PIN: ***-***-***
-
 ```
 
 input the number of variables and clauses, in the input phase of clauses, please input any 3 integers as variable (e.g. 1 -2 3  ->  x1 ∨ ¬x2 ∨ x3 )
